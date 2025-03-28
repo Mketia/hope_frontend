@@ -20,7 +20,7 @@ function Register() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/account/register/",
+        "https://hope-backend-9gc3.onrender.com/api/account/register/",
         formData
       );
       console.log("Registration Successful:", response.data);
