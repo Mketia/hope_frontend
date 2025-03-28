@@ -28,7 +28,7 @@ function Home() {
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     if (!token) {
-      navigate("/login"); 
+      navigate("/login");
     }
   }, [navigate]);
 
@@ -42,7 +42,7 @@ function Home() {
       }
 
       await axios.post(
-        "http://127.0.0.1:8000/api/account/logout/",
+        "https://hope-backend-9gc3.onrender.com/api/account/logout/",
         { refresh: refreshToken },
         {
           headers: {
@@ -58,8 +58,6 @@ function Home() {
       console.error("Logout Error:", error.response?.data || error.message);
     }
   };
-  
-
 
   const solutions = [
     {
@@ -75,9 +73,9 @@ function Home() {
     {
       image: "/images/language.jpg",
       title: "Language Support",
-      description: "Offering translation headsets to overcome language barriers.",
+      description:
+        "Offering translation headsets to overcome language barriers.",
     },
-
   ];
 
   const problem = [
@@ -85,9 +83,8 @@ function Home() {
       image: "/images/scholarship.jpg",
       title: "School Issues",
       description: "Addressing school issues and improving student outcomes.",
-    }
-    
-  ]
+    },
+  ];
 
   return (
     <div>
@@ -98,17 +95,26 @@ function Home() {
           </div>
           <div className="hamburger">&#9776;</div>
           <ul className="menu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/donate">Donate</a></li>
-            <li><a href="#contacts">Contacts</a></li>
+            <li>
+              <a href="#home">Home</a>
+            </li>
+            <li>
+              <a href="/about">About Us</a>
+            </li>
+            <li>
+              <a href="/donate">Donate</a>
+            </li>
+            <li>
+              <a href="#contacts">Contacts</a>
+            </li>
           </ul>
           <div className="user-info">
             <span id="username-display"></span>
-            const handleLogout = () = {
+            {/* const handleLogout = () = {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
-            navigate('/login');};
+            navigate('/login');
+            }; */}
             <button onClick={handleLogout}>Logout</button>
           </div>
         </nav>
@@ -118,35 +124,60 @@ function Home() {
         <h1>Bringing Hope and Restoring Dreams</h1>
         <p>We help children return to school and build a better future.</p>
         <div className="buttons">
-          <button onClick={() => setDonationModalOpen(true)} className="donate-btn">Donate Now</button>
+          <button
+            onClick={() => setDonationModalOpen(true)}
+            className="donate-btn"
+          >
+            Donate Now
+          </button>
           <button className="donate-now-btn">Support Us</button>
           <button className="contribute-btn">Contribute</button>
-          <button className="learn-more" onClick={(e) => {
-  e.preventDefault(); 
-  setShowBlog(true);
-}}>
-  Learn More
-</button>
+          <button
+            className="learn-more"
+            onClick={(e) => {
+              e.preventDefault();
+              setShowBlog(true);
+            }}
+          >
+            Learn More
+          </button>
         </div>
       </section>
 
       {donationModalOpen && (
         <div id="donationModal" className="modal">
           <div className="modal-content">
-            <span className="close" onClick={() => setDonationModalOpen(false)}>&times;</span>
+            <span className="close" onClick={() => setDonationModalOpen(false)}>
+              &times;
+            </span>
             <h2>Donate & Change a Life</h2>
             <form id="donationForm">
               <input type="text" name="name" placeholder="Your Name" required />
-              <input type="email" name="email" placeholder="Your Email" required />
-              <input type="phonenumber" name="phone_number" placeholder="+25078997465" required />
-              <input type="number" name="amount" placeholder="Amount ($)" required />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required
+              />
+              <input
+                type="phonenumber"
+                name="phone_number"
+                placeholder="+25078997465"
+                required
+              />
+              <input
+                type="number"
+                name="amount"
+                placeholder="Amount ($)"
+                required
+              />
               <button type="submit">Donate Now</button>
             </form>
           </div>
         </div>
       )}
 
-{showBlog && ( 
+      {showBlog && (
         <section id="blog" className="blog">
           <h1>Our Blog</h1>
           <article className="blog-post">
@@ -166,86 +197,124 @@ function Home() {
       )}
 
       <section id="about" className="about">
-      <div className="about-content">
-        <div className="about-text">
-          <h2>About Us</h2>
-          <p>
-            Hope for Children is a nonprofit organization dedicated to helping out-of-school children return to education. 
-            Since 2010, we have impacted over 10,000 children across 20 countries.
-          </p>
-        </div>
+        <div className="about-content">
+          <div className="about-text">
+            <h2>About Us</h2>
+            <p>
+              Hope for Children is a nonprofit organization dedicated to helping
+              out-of-school children return to education. Since 2010, we have
+              impacted over 10,000 children across 20 countries.
+            </p>
+          </div>
 
-        <div className="about-cards">
-          <div className="card">
-            <div className="cards"><FontAwesomeIcon icon={faEye} /></div>
-            <h3>Our Mission</h3>
-            <p>Ensuring every child has access to quality education, regardless of their circumstances.</p>
-          </div>
-          <div className="card">
-            <div className="cards"><FontAwesomeIcon icon={faEye} /></div>
-            <h3>Our Vision</h3>
-            <p>A world where no child is left behind due to financial or social challenges.</p>
-          </div>
-          <div className="card">
-            <div className="cards"><FontAwesomeIcon icon={faHistory} /></div>
-            <h3>Our Story</h3>
-            <p>Founded in 2010, we have been working tirelessly to make education accessible to every child in need.</p>
-          </div>
-          <div className="card">
-            <div className="cards"><FontAwesomeIcon icon={faHistory} /></div>
-            <h3>Our value</h3>
-            <p>Provide educational scholarships to at least 5,000 children annually,Build partnerships to create sustainable educational resources.</p>
+          <div className="about-cards">
+            <div className="card">
+              <div className="cards">
+                <FontAwesomeIcon icon={faEye} />
+              </div>
+              <h3>Our Mission</h3>
+              <p>
+                Ensuring every child has access to quality education, regardless
+                of their circumstances.
+              </p>
+            </div>
+            <div className="card">
+              <div className="cards">
+                <FontAwesomeIcon icon={faEye} />
+              </div>
+              <h3>Our Vision</h3>
+              <p>
+                A world where no child is left behind due to financial or social
+                challenges.
+              </p>
+            </div>
+            <div className="card">
+              <div className="cards">
+                <FontAwesomeIcon icon={faHistory} />
+              </div>
+              <h3>Our Story</h3>
+              <p>
+                Founded in 2010, we have been working tirelessly to make
+                education accessible to every child in need.
+              </p>
+            </div>
+            <div className="card">
+              <div className="cards">
+                <FontAwesomeIcon icon={faHistory} />
+              </div>
+              <h3>Our value</h3>
+              <p>
+                Provide educational scholarships to at least 5,000 children
+                annually,Build partnerships to create sustainable educational
+                resources.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       <section id="services" className="services">
-      <h2>What We Provide</h2>
-      <div className="service-list">
-        <div className="service-card">
-          <div className="cards"><FontAwesomeIcon icon={faBullseye} /></div>
-          <h3>Therapy</h3>
-          <p>We provide therapy to help children with mental health issues.</p>
-        </div>
-        <div className="service-card">
-          <div className="cards"><FontAwesomeIcon icon={faHandHoldingUsd} /></div>
-          <h3>Support</h3>
-          <p>We provide emotional and financial support...</p>
-        </div>
-        <div className="service-card">
-        <div className="cards"><FontAwesomeIcon icon={faUtensils} /></div>
-          
-          <h3>Meals</h3>
-          <p>Nutritious meals to ensure children stay healthy and focused.</p>
-        </div>
-        <div className="service-card">
-        <div className="cards"><FontAwesomeIcon icon={faBook} /></div>
-          
-          <h3>Education</h3>
-          <p>Access to quality education and learning resources.</p>
-        </div>
-        <div className="service-card">
-          <div className="cards"><FontAwesomeIcon icon={faHeart} /></div>
-          
-          <h3>Care</h3>
-          <p>We care for the overall well-being of every child.</p>
-        </div>
-      </div>
-    </section>
+        <h2>What We Provide</h2>
+        <div className="service-list">
+          <div className="service-card">
+            <div className="cards">
+              <FontAwesomeIcon icon={faBullseye} />
+            </div>
+            <h3>Therapy</h3>
+            <p>
+              We provide therapy to help children with mental health issues.
+            </p>
+          </div>
+          <div className="service-card">
+            <div className="cards">
+              <FontAwesomeIcon icon={faHandHoldingUsd} />
+            </div>
+            <h3>Support</h3>
+            <p>We provide emotional and financial support...</p>
+          </div>
+          <div className="service-card">
+            <div className="cards">
+              <FontAwesomeIcon icon={faUtensils} />
+            </div>
 
-    <section id="problem" className="problem">
-      <div className="problem-content">
-        <h2>The Problem We Solve</h2>
-        <p>
-          In Gisenyi, many children drop out of school due to financial
-          struggles, mental health issues, and language barriers. This leads to
-          an increase in street children, crime, and lost opportunities for a
-          brighter future. Our goal is to change that.
-        </p>
-        <img src="/images/street.png" alt="Children in need" className="problem-img" />
-      </div>
-    </section>
+            <h3>Meals</h3>
+            <p>Nutritious meals to ensure children stay healthy and focused.</p>
+          </div>
+          <div className="service-card">
+            <div className="cards">
+              <FontAwesomeIcon icon={faBook} />
+            </div>
+
+            <h3>Education</h3>
+            <p>Access to quality education and learning resources.</p>
+          </div>
+          <div className="service-card">
+            <div className="cards">
+              <FontAwesomeIcon icon={faHeart} />
+            </div>
+
+            <h3>Care</h3>
+            <p>We care for the overall well-being of every child.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="problem" className="problem">
+        <div className="problem-content">
+          <h2>The Problem We Solve</h2>
+          <p>
+            In Gisenyi, many children drop out of school due to financial
+            struggles, mental health issues, and language barriers. This leads
+            to an increase in street children, crime, and lost opportunities for
+            a brighter future. Our goal is to change that.
+          </p>
+          <img
+            src="/images/street.png"
+            alt="Children in need"
+            className="problem-img"
+          />
+        </div>
+      </section>
 
       <section id="solutions" className="solutions">
         <h2>How We Help</h2>
@@ -260,72 +329,87 @@ function Home() {
         </div>
       </section>
       <section id="contacts" className="contact-section">
-  <h2>Contact Us</h2>
-  <div className="contact-content">
-    <div className="contact-info">
-      <h3>Get in Touch</h3>
-      <p>Email: info@hopeforchildren.org</p>
-      <p>Phone: +250 789 123 456</p>
-      <p>Address: 123 Hope Street, Gisenyi, Rwanda</p>
-    </div>
-    <div className="contact-form">
-      <form>
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
-  </div>
-</section>
+        <h2>Contact Us</h2>
+        <div className="contact-content">
+          <div className="contact-info">
+            <h3>Get in Touch</h3>
+            <p>Email: info@hopeforchildren.org</p>
+            <p>Phone: +250 789 123 456</p>
+            <p>Address: 123 Hope Street, Gisenyi, Rwanda</p>
+          </div>
+          <div className="contact-form">
+            <form>
+              <input type="text" placeholder="Your Name" required />
+              <input type="email" placeholder="Your Email" required />
+              <textarea placeholder="Your Message" required></textarea>
+              <button type="submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </section>
       <footer>
         <div className="footer-content">
           <div className="quick-links">
             <h3>Quick Links</h3>
             <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#donate">Donate</a></li>
+              <li>
+                <a href="#home">Home</a>
+              </li>
+              <li>
+                <a href="#about">About</a>
+              </li>
+              <li>
+                <a href="#services">Services</a>
+              </li>
+              <li>
+                <a href="#donate">Donate</a>
+              </li>
             </ul>
           </div>
           <div className="social-links">
-      <h3>Follow Us</h3>
-      <ul>
-        <li>
-          <a href="#">
-            <FontAwesomeIcon icon={faInstagram} /> Instagram
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <FontAwesomeIcon icon={faYoutube} /> YouTube
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <FontAwesomeIcon icon={faGoogle} /> Google
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <FontAwesomeIcon icon={faTwitter} /> Twitter
-          </a>
-        </li>
-      </ul>
-    </div>
+            <h3>Follow Us</h3>
+            <ul>
+              <li>
+                <a href="#">
+                  <FontAwesomeIcon icon={faInstagram} /> Instagram
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <FontAwesomeIcon icon={faYoutube} /> YouTube
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <FontAwesomeIcon icon={faGoogle} /> Google
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <FontAwesomeIcon icon={faTwitter} /> Twitter
+                </a>
+              </li>
+            </ul>
+          </div>
           <div className="newsletter">
             <h3>Newsletter</h3>
             <p>Subscribe to our newsletter to stay updated.</p>
             <form id="newsletterForm">
-              <input type="email" name="email" placeholder="Your Email" required />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required
+              />
             </form>
-            <button onClick={() => setNewsletterModalOpen(true)}>Subscribe</button>
+            <button onClick={() => setNewsletterModalOpen(true)}>
+              Subscribe
+            </button>
           </div>
         </div>
       </footer>

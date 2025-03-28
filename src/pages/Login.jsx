@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Use navigate for redirection
-import axios from 'axios';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom"; // Use navigate for redirection
+import axios from "axios";
 
 function Login() {
   const [formData, setFormData] = useState({
-    username: '',
-    password: ''
+    username: "",
+    password: "",
   });
 
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
- 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -21,20 +20,26 @@ function Login() {
     setError(null);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/account/token/', formData, {
-        headers: {
-          'Content-Type': 'application/json'
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/account/token/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      });
+      );
 
-      console.log('Login successful:', response.data);
-      localStorage.setItem('authToken', response.data.token);
+      console.log("Login successful:", response.data);
+      localStorage.setItem("authToken", response.data.token);
 
-      navigate('/home');
-      
+      navigate("/home");
     } catch (error) {
-      console.error('Login Error:', error.response?.data || error.message);
-      setError(error.response?.data?.message || 'Invalid credentials. Please try again.');
+      console.error("Login Error:", error.response?.data || error.message);
+      setError(
+        error.response?.data?.message ||
+          "Invalid credentials. Please try again."
+      );
     }
   };
 
@@ -46,7 +51,7 @@ function Login() {
         <form id="loginForm" onSubmit={handleSubmit}>
           <input
             type="email"
-            name="username"  
+            name="username"
             placeholder="Email"
             value={formData.username}
             onChange={handleInputChange}
@@ -64,7 +69,9 @@ function Login() {
             <Link to="/reset">Forgot Password?</Link>
           </div>
           <button type="submit">Login</button>
-          <p>Don't have an account? <Link to="/register">Register here</Link></p>
+          <p>
+            Don't have an account? <Link to="/register">Register here</Link>
+          </p>
         </form>
       </div>
     </div>
