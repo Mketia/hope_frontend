@@ -7,7 +7,7 @@ import Login from "./pages/Login.jsx";
 import Reset from "./pages/Reset.jsx";
 import Register from "./pages/Register.jsx"; // Make sure this import is correct
 import About from "./pages/About.jsx";
-import Donate from "./pages/donate.jsx";
+import Donate from "./pages/Donate.jsx";
 import ScholarshipSection from "./pages/ScholarshipSection.jsx";
 import Home from "./pages/Home.jsx";
 import "../src/css/styles.css";
