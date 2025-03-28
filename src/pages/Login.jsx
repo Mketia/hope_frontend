@@ -32,6 +32,7 @@ function Login() {
 
       console.log("Login successful:", response.data);
       localStorage.setItem("authToken", response.data.token);
+      console.log(response.data);
 
       navigate("/home");
     } catch (error) {
