@@ -28,12 +28,12 @@ createRoot(rootElement).render(
       <Routes>
         <Route path="/" element={<Register />} />{" "}
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Register />} />\
+        <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/reset" element={<Reset />} />
         <Route path="/scholarship" element={<ScholarshipSection />} />
-        <Route path="/home" element={<Home />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
