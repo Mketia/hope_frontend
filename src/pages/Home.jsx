@@ -145,7 +145,7 @@ function Home() {
               <a href="#home">Home</a>
             </li>
             <li>
-              <a href="/about">About Us</a>
+              <a href="About">About Us</a>
             </li>
             <li>
               <a href="/donate">Donate</a>
@@ -420,13 +420,13 @@ function Home() {
                 <a href="#home">Home</a>
               </li>
               <li>
-                <a href="#about">About</a>
+                <a href="/about">About</a>
               </li>
               <li>
                 <a href="#services">Services</a>
               </li>
               <li>
-                <a href="#donate">Donate</a>
+                <a href="/donate">Donate</a>
               </li>
             </ul>
           </div>
