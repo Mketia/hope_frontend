@@ -2,23 +2,16 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
-import App from "./App.jsx";
-import Login from "./pages/Login.jsx";
-import Reset from "./pages/Reset.jsx";
-import Register from "./pages/Register.jsx";
-import About from "./pages/About.jsx";
-import Donate from "./pages/Donate.jsx";
-import ScholarshipSection from "./pages/ScholarshipSection.jsx";
-import Home from "./pages/Home.jsx";
+import App from "./App";
+import Login from "./pages/Login";
+import Reset from "./pages/Reset";
+import Register from "./pages/Register";
+import About from "./pages/About";
+import Donate from "./pages/Donate";
+import ScholarshipSection from "./pages/ScholarshipSection";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound"; // Create this if you haven't
 import "../src/css/styles.css";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faInstagram,
-  faTwitter,
-  faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
-
-library.add(faInstagram, faTwitter, faYoutube);
 
 const rootElement = document.getElementById("root");
 
@@ -34,7 +27,7 @@ createRoot(rootElement).render(
           <Route path="donate" element={<Donate />} />
           <Route path="reset" element={<Reset />} />
           <Route path="scholarship" element={<ScholarshipSection />} />
-          <Route path="home" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
