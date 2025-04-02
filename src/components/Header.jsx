@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"; // This line MUST be present
+import { Link } from "react-router-dom"; // MUST be imported
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../css/styles.css";
 
@@ -8,7 +8,6 @@ function Header() {
     <header>
       <nav>
         <div className="logo">
-          {/* Use Link for React Router navigation */}
           <Link to="/">
             <img src="/images/logo.png" alt="Logo" />
           </Link>
@@ -24,7 +23,6 @@ function Header() {
           <li>
             <Link to="/donate">Donate</Link>
           </li>
-          {/* Keep regular <a> tag for anchor links */}
           <li>
             <a href="#contacts">Contact</a>
           </li>

@@ -5,11 +5,12 @@ import "./index.css";
 import App from "./App.jsx";
 import Login from "./pages/Login.jsx";
 import Reset from "./pages/Reset.jsx";
-import Register from "./pages/Register.jsx"; // Make sure this import is correct
+import Register from "./pages/Register.jsx";
 import About from "./pages/About.jsx";
 import Donate from "./pages/Donate.jsx";
 import ScholarshipSection from "./pages/ScholarshipSection.jsx";
 import Home from "./pages/Home.jsx";
+import NotFound from "./pages/NotFound.jsx"; // Add this new component
 import "../src/css/styles.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -26,14 +27,16 @@ createRoot(rootElement).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Register />} />{" "}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/donate" element={<Donate />} />
-        <Route path="/reset" element={<Reset />} />
-        <Route path="/scholarship" element={<ScholarshipSection />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="about" element={<About />} />
+          <Route path="donate" element={<Donate />} />
+          <Route path="reset" element={<Reset />} />
+          <Route path="scholarship" element={<ScholarshipSection />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>
