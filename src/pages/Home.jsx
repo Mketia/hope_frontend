@@ -24,6 +24,13 @@ function Home() {
   const navigate = useNavigate();
   const [donationModalOpen, setDonationModalOpen] = useState(false);
   const [showBlog, setShowBlog] = useState(false);
+  const [newsletterModalOpen, setNewsletterModalOpen] = useState(false);
+  const [donationData, setDonationData] = useState({
+    name: "",
+    email: "",
+    phone_number: "",
+    amount: "",
+  });
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -66,6 +73,35 @@ function Home() {
       localStorage.removeItem("authToken");
       localStorage.removeItem("refreshToken");
       navigate("/login");
+    }
+  };
+
+  const handleDonationChange = (e) => {
+    const { name, value } = e.target;
+    setDonationData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleDonationSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const authToken = localStorage.getItem("authToken");
+      await axios.post(
+        "https://hope-backend-9gc3.onrender.com/api/donations/",
+        donationData,
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
+      alert("Donation submitted successfully!");
+      setDonationModalOpen(false);
+    } catch (error) {
+      console.error("Donation Error:", error.response?.data || error.message);
+      alert("Failed to submit donation");
     }
   };
 
@@ -119,12 +155,9 @@ function Home() {
             </li>
           </ul>
           <div className="user-info">
-            <span id="username-display"></span>
-            {/* const handleLogout = () = {
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('refreshToken');
-            navigate('/login');
-            }; */}
+            <span id="username-display">
+              {localStorage.getItem("user") || "Guest"}
+            </span>
             <button onClick={handleLogout}>Logout</button>
           </div>
         </nav>
@@ -141,86 +174,92 @@ function Home() {
             Donate Now
           </button>
           <button
-            onClick={() => setDonationModalOpen(true)}
+            onClick={() => setShowBlog(!showBlog)}
             className="donate-now-btn"
           >
-            Support Us
+            {showBlog ? "Hide Blog" : "View Blog"}
           </button>
           <button
-            onClick={() => setDonationModalOpen(true)}
+            onClick={() =>
+              window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: "smooth",
+              })
+            }
             className="contribute-btn"
           >
-            Contribute
+            Contact Us
           </button>
+        </div>
 
-          {donationModalOpen && (
-            <div id="donationModal" className="modal">
-              <div className="modal-content">
-                <span
-                  className="close"
-                  onClick={() => setDonationModalOpen(false)}
-                >
-                  &times;
-                </span>
-                <h2>Donate & Change a Life</h2>
-                <form onSubmit={handleDonationSubmit} id="donationForm">
-                  <input
-                    type="text"
-                    name="name"
-                    value={donationData.name}
-                    onChange={handleDonationChange}
-                    placeholder="Your Name"
-                    required
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    value={donationData.email}
-                    onChange={handleDonationChange}
-                    placeholder="Your Email"
-                    required
-                  />
-                  <input
-                    type="phone"
-                    name="phone_number"
-                    value={donationData.phone_number}
-                    onChange={handleDonationChange}
-                    placeholder="Your Phone Number"
-                    required
-                  />
-                  <input
-                    type="number"
-                    name="amount"
-                    value={donationData.amount}
-                    onChange={handleDonationChange}
-                    placeholder="Amount ($)"
-                    required
-                  />
-                  <button type="submit">Donate Now</button>
-                </form>
-              </div>
+        {donationModalOpen && (
+          <div id="donationModal" className="modal">
+            <div className="modal-content">
+              <span
+                className="close"
+                onClick={() => setDonationModalOpen(false)}
+              >
+                &times;
+              </span>
+              <h2>Donate & Change a Life</h2>
+              <form onSubmit={handleDonationSubmit} id="donationForm">
+                <input
+                  type="text"
+                  name="name"
+                  value={donationData.name}
+                  onChange={handleDonationChange}
+                  placeholder="Your Name"
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  value={donationData.email}
+                  onChange={handleDonationChange}
+                  placeholder="Your Email"
+                  required
+                />
+                <input
+                  type="tel"
+                  name="phone_number"
+                  value={donationData.phone_number}
+                  onChange={handleDonationChange}
+                  placeholder="Your Phone Number"
+                  required
+                />
+                <input
+                  type="number"
+                  name="amount"
+                  value={donationData.amount}
+                  onChange={handleDonationChange}
+                  placeholder="Amount ($)"
+                  min="1"
+                  required
+                />
+                <button type="submit">Donate Now</button>
+              </form>
             </div>
-          )}
-      {showBlog && (
-        <section id="blog" className="blog">
-          <h1>Our Blog</h1>
-          <article className="blog-post">
-            <img src="/images/education.jpg" alt="Blog Image" />
-            <h2>How Education Transforms Lives</h2>
-            <p>Education is the key to breaking the cycle of poverty.</p>
-            <a href="#">Read More</a>
-          </article>
+          </div>
+        )}
 
-          <article className="blog-post">
-            <img src="/images/therapist.jpg" alt="Blog Image" />
-            <h2>Supporting Mental Health in Children</h2>
-            <p>Learn how we provide therapy and emotional support.</p>
-            <button className="read-more-btn">Read More</button>
-          </article>
-        </section>
-      )}
-      </div>
-
+        {showBlog && (
+          <section id="blog" className="blog">
+            <h1>Our Blog</h1>
+            <article className="blog-post">
+              <img src="/images/education.jpg" alt="Blog Image" />
+              <h2>How Education Transforms Lives</h2>
+              <p>Education is the key to breaking the cycle of poverty.</p>
+              <a href="#">Read More</a>
+            </article>
+            <article className="blog-post">
+              <img src="/images/therapist.jpg" alt="Blog Image" />
+              <h2>Supporting Mental Health in Children</h2>
+              <p>Learn how we provide therapy and emotional support.</p>
+              <button className="read-more-btn">Read More</button>
+            </article>
+          </section>
+        )}
+      </section>
       <section id="about" className="about">
         <div className="about-content">
           <div className="about-text">
