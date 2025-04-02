@@ -1745,24 +1745,21 @@ button {
   color: #ddd;
 }
 
-/* Image Styling - Centering */
 .problem img {
   width: 100%;
   max-width: 600px;
   display: block;
-  margin: 30px auto 0; /* Center the image */
+  margin: 30px auto 0;
   border-radius: 15px;
   box-shadow: 0px 8px 20px rgba(255, 87, 51, 0.3);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* Image Hover Effect */
 .problem img:hover {
   transform: scale(1.05);
   box-shadow: 0px 12px 25px rgba(255, 87, 51, 0.5);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .problem {
     padding: 80px 20px;
@@ -1780,7 +1777,6 @@ button {
 .solutions {
   text-align: center;
   padding: 80px 30px;
-  background-color: #333;
   color: white;
 }
 
@@ -1788,6 +1784,7 @@ button {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  color: #fff;
   gap: 20px;
 }
 

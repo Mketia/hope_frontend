@@ -35,9 +35,13 @@ function Home() {
   const handleLogout = async () => {
     try {
       const refreshToken = localStorage.getItem("refreshToken");
+      const authToken = localStorage.getItem("authToken");
 
-      if (!refreshToken) {
-        console.error("No refresh token found.");
+      if (!refreshToken || !authToken) {
+        console.error("No tokens found");
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("refreshToken");
+        navigate("/login");
         return;
       }
 
@@ -47,15 +51,21 @@ function Home() {
         {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
           },
         }
       );
 
       localStorage.removeItem("authToken");
       localStorage.removeItem("refreshToken");
+      localStorage.removeItem("user");
+
       navigate("/login");
     } catch (error) {
       console.error("Logout Error:", error.response?.data || error.message);
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("refreshToken");
+      navigate("/login");
     }
   };
 

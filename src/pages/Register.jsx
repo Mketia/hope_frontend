@@ -10,21 +10,26 @@ function Register() {
     e.preventDefault();
     setError(null);
 
-    const formData = {
-      first_name: e.target.first_name.value,
-      last_name: e.target.last_name.value,
-      email: e.target.email.value,
-      password: e.target.password.value,
-      phone_number: e.target.phone_number.value,
+    const formData = new FormData(e.target);
+    const data = {
+      first_name: formData.get("first_name"),
+      last_name: formData.get("last_name"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+      phone_number: formData.get("phone_number"),
     };
 
     try {
       const response = await axios.post(
         "https://hope-backend-9gc3.onrender.com/api/account/register/",
-        formData
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
       console.log("Registration Successful:", response.data);
-
       navigate("/login");
     } catch (error) {
       console.error(
@@ -58,11 +63,11 @@ function Register() {
             required
           />
           <input type="email" name="email" placeholder="Email" required />
-          <input type="text" name="phone_number" placeholder="phone_number" />
+          <input type="text" name="phone_number" placeholder="Phone Number" />
           <input
             type="password"
             name="password"
-            placeholder="password"
+            placeholder="Password"
             required
             minLength="8"
           />
