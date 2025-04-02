@@ -142,13 +142,13 @@ function Home() {
           <div className="hamburger">&#9776;</div>
           <ul className="menu">
             <li>
-              <a href="#home">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="/about">About Us</a>
+              <Link to="/about">About Us</Link>
             </li>
             <li>
-              <a href="/donate">Donate</a>
+              <Link to="/donate">Donate</Link>
             </li>
             <li>
               <a href="#contacts">Contacts</a>
