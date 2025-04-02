@@ -3,22 +3,6 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-import { Outlet } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import './App.css';
-
-function App() {
-  return (
-    <div className="app">
-      <Header />
-      <main className="main-content">
-        <Outlet /> {/* This renders the matched child route */}
-      </main>
-      <Footer />
-    </div>
-  );
-}
 
   const [count, setCount] = useState(0);
 
