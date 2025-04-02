@@ -140,53 +140,67 @@ function Home() {
           >
             Donate Now
           </button>
-          <button className="donate-now-btn">Support Us</button>
-          <button className="contribute-btn">Contribute</button>
           <button
-            className="learn-more"
-            onClick={(e) => {
-              e.preventDefault();
-              setShowBlog(true);
-            }}
+            onClick={() => setDonationModalOpen(true)}
+            className="donate-now-btn"
           >
-            Learn More
+            Support Us
           </button>
-        </div>
-      </section>
+          <button
+            onClick={() => setDonationModalOpen(true)}
+            className="contribute-btn"
+          >
+            Contribute
+          </button>
 
-      {donationModalOpen && (
-        <div id="donationModal" className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={() => setDonationModalOpen(false)}>
-              &times;
-            </span>
-            <h2>Donate & Change a Life</h2>
-            <form id="donationForm">
-              <input type="text" name="name" placeholder="Your Name" required />
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                required
-              />
-              <input
-                type="phonenumber"
-                name="phone_number"
-                placeholder="+25078997465"
-                required
-              />
-              <input
-                type="number"
-                name="amount"
-                placeholder="Amount ($)"
-                required
-              />
-              <button type="submit">Donate Now</button>
-            </form>
-          </div>
-        </div>
-      )}
-
+          {donationModalOpen && (
+            <div id="donationModal" className="modal">
+              <div className="modal-content">
+                <span
+                  className="close"
+                  onClick={() => setDonationModalOpen(false)}
+                >
+                  &times;
+                </span>
+                <h2>Donate & Change a Life</h2>
+                <form onSubmit={handleDonationSubmit} id="donationForm">
+                  <input
+                    type="text"
+                    name="name"
+                    value={donationData.name}
+                    onChange={handleDonationChange}
+                    placeholder="Your Name"
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    value={donationData.email}
+                    onChange={handleDonationChange}
+                    placeholder="Your Email"
+                    required
+                  />
+                  <input
+                    type="phone"
+                    name="phone_number"
+                    value={donationData.phone_number}
+                    onChange={handleDonationChange}
+                    placeholder="Your Phone Number"
+                    required
+                  />
+                  <input
+                    type="number"
+                    name="amount"
+                    value={donationData.amount}
+                    onChange={handleDonationChange}
+                    placeholder="Amount ($)"
+                    required
+                  />
+                  <button type="submit">Donate Now</button>
+                </form>
+              </div>
+            </div>
+          )}
       {showBlog && (
         <section id="blog" className="blog">
           <h1>Our Blog</h1>
@@ -205,6 +219,7 @@ function Home() {
           </article>
         </section>
       )}
+      </div>
 
       <section id="about" className="about">
         <div className="about-content">

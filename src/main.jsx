@@ -29,7 +29,7 @@ createRoot(rootElement).render(
         <Route path="/" element={<Register />} />{" "}
         {/* This is your register page */}
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} /> {/* Add this line */}
+        <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/reset" element={<Reset />} />
