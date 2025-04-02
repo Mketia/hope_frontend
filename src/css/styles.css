@@ -1819,3 +1819,28 @@ button {
 .user-info button:hover {
   background: darkred;
 }
+
+@media (min-width: 992px) {
+  .nav-menu {
+    position: static;
+    width: auto;
+    height: auto;
+    display: flex;
+  }
+  .hamburger {
+    display: none;
+  }
+
+  .nav-links {
+    position: static;
+    width: auto;
+    height: auto;
+    display: flex;
+    background: transparent;
+  }
+}
+@media (max-width: 767px) {
+  .card {
+    margin-bottom: 20px;
+  }
+}
