@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom"; // MUST be imported
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../css/styles.css";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
