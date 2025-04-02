@@ -5,7 +5,7 @@ import "./index.css";
 import App from "./App.jsx";
 import Login from "./pages/Login.jsx";
 import Reset from "./pages/Reset.jsx";
-import Register from "./pages/Register.jsx"; // Make sure this import is correct
+import Register from "./pages/Register.jsx";
 import About from "./pages/About.jsx";
 import Donate from "./pages/Donate.jsx";
 import ScholarshipSection from "./pages/ScholarshipSection.jsx";
@@ -26,14 +26,16 @@ createRoot(rootElement).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Register />} />{" "}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/donate" element={<Donate />} />
-        <Route path="/reset" element={<Reset />} />
-        <Route path="/scholarship" element={<ScholarshipSection />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="about" element={<About />} />
+          <Route path="donate" element={<Donate />} />
+          <Route path="reset" element={<Reset />} />
+          <Route path="scholarship" element={<ScholarshipSection />} />
+          <Route path="home" element={<Home />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>
