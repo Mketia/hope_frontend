@@ -10,7 +10,7 @@ import About from "./pages/About.jsx";
 import Donate from "./pages/Donate.jsx";
 import ScholarshipSection from "./pages/ScholarshipSection.jsx";
 import Home from "./pages/Home.jsx";
-import NotFound from "./pages/NotFound.jsx"; // Add this new component
+import NotFound from "./pages/NotFound.jsx";
 import "../src/css/styles.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
