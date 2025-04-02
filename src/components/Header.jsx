@@ -1,28 +1,24 @@
 import React from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../css/styles.css";
-import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <header>
       <nav>
         <div className="logo">
-          <Link to="/">
-            <img src="/images/logo.png" alt="Logo" />
-          </Link>
+          <img src="/images/logo.png" alt="Logo" />
         </div>
         <div className="hamburger">&#9776;</div>
         <ul className="menu">
           <li>
-            <Link to="/">Home</Link>
+            <a href="/">Home</a>
           </li>
           <li>
-            <Link to="/about">About Us</Link>
+            <a href="/about">About Us</a>
           </li>
           <li>
-            <Link to="/donate">Donate</Link>
+            <a href="/donate">Donate</a>
           </li>
           <li>
             <a href="#contacts">Contact</a>
