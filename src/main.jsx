@@ -31,8 +31,8 @@ createRoot(rootElement).render(
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="about" element={<About />} />
-          <Route path="donate" element={<Donate />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/donate" element={<Donate />} />
           <Route path="reset" element={<Reset />} />
           <Route path="scholarship" element={<ScholarshipSection />} />
           <Route path="*" element={<NotFound />} />

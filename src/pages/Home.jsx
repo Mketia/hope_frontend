@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "../css/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -142,7 +142,7 @@ function Home() {
           <div className="hamburger">&#9776;</div>
           <ul className="menu">
             <li>
-              <Link to="/">Home</Link>
+              <Link to="#home">Home</Link>
             </li>
             <li>
               <Link to="/about">About Us</Link>
@@ -151,7 +151,7 @@ function Home() {
               <Link to="/donate">Donate</Link>
             </li>
             <li>
-              <a href="#contacts">Contacts</a>
+              <Link to="/#contacts">Contacts</Link>
             </li>
           </ul>
           <div className="user-info">
