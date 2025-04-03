@@ -104,6 +104,20 @@ function Home() {
       alert("Failed to submit donation");
     }
   };
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [showNewsletterThankYou, setShowNewsletterThankYou] = useState(false);
+
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+    setShowThankYou(true);
+    setTimeout(() => setShowThankYou(false), 3000);
+  };
+
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault();
+    setShowNewsletterThankYou(true);
+    setTimeout(() => setShowNewsletterThankYou(false), 3000);
+  };
 
   const solutions = [
     {
@@ -167,12 +181,10 @@ function Home() {
         <h1>Bringing Hope and Restoring Dreams</h1>
         <p>We help children return to school and build a better future.</p>
         <div className="buttons">
-          <button
-            onClick={() => setDonationModalOpen(true)}
-            className="donate-btn"
-          >
+          {/* Changed to Link component for direct navigation */}
+          <Link to="/donate" className="donate-btn">
             Donate Now
-          </button>
+          </Link>
           <button
             onClick={() => setShowBlog(!showBlog)}
             className="donate-now-btn"
@@ -180,67 +192,24 @@ function Home() {
             {showBlog ? "Hide Blog" : "View Blog"}
           </button>
           <button
-            onClick={() =>
+            onClick={() => {
               window.scrollTo({
                 top: document.body.scrollHeight,
                 behavior: "smooth",
-              })
-            }
+              });
+              // Show thank you popup if coming from form submission
+              if (location.hash === "#thank-you") {
+                setShowThankYou(true);
+                setTimeout(() => setShowThankYou(false), 3000);
+                // Remove the hash without page reload
+                window.history.replaceState(null, null, " ");
+              }
+            }}
             className="contribute-btn"
           >
             Contact Us
           </button>
         </div>
-
-        {donationModalOpen && (
-          <div id="donationModal" className="modal">
-            <div className="modal-content">
-              <span
-                className="close"
-                onClick={() => setDonationModalOpen(false)}
-              >
-                &times;
-              </span>
-              <h2>Donate & Change a Life</h2>
-              <form onSubmit={handleDonationSubmit} id="donationForm">
-                <input
-                  type="text"
-                  name="name"
-                  value={donationData.name}
-                  onChange={handleDonationChange}
-                  placeholder="Your Name"
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  value={donationData.email}
-                  onChange={handleDonationChange}
-                  placeholder="Your Email"
-                  required
-                />
-                <input
-                  type="tel"
-                  name="phone_number"
-                  value={donationData.phone_number}
-                  onChange={handleDonationChange}
-                  placeholder="Your Phone Number"
-                  required
-                />
-                <input
-                  type="number"
-                  name="amount"
-                  value={donationData.amount}
-                  onChange={handleDonationChange}
-                  placeholder="Amount ($)"
-                  min="1"
-                  required
-                />
-                <button type="submit">Donate Now</button>
-              </form>
-            </div>
-          </div>
-        )}
 
         {showBlog && (
           <section id="blog" className="blog">
@@ -463,20 +432,57 @@ function Home() {
           <div className="newsletter">
             <h3>Newsletter</h3>
             <p>Subscribe to our newsletter to stay updated.</p>
-            <form id="newsletterForm">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setShowNewsletterThankYou(true);
+                setTimeout(() => setShowNewsletterThankYou(false), 3000);
+                e.target.reset();
+              }}
+            >
               <input
                 type="email"
                 name="email"
                 placeholder="Your Email"
                 required
               />
+              <button type="submit">Subscribe</button>
             </form>
-            <button onClick={() => setNewsletterModalOpen(true)}>
-              Subscribe
-            </button>
           </div>
         </div>
       </footer>
+      {showThankYou && (
+        <div className="popup-overlay">
+          <div className="popup-message">
+            <h3>Thank You!</h3>
+            <p>
+              We've received your message and will get in touch with you soon
+              via email.
+            </p>
+            <button
+              className="close-popup"
+              onClick={() => setShowThankYou(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showNewsletterThankYou && (
+        <div className="popup-overlay">
+          <div className="popup-message">
+            <h3>Thank You for Subscribing!</h3>
+            <p>We'll send you our newsletter with updates soon.</p>
+            <button
+              className="close-popup"
+              onClick={() => setShowNewsletterThankYou(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
